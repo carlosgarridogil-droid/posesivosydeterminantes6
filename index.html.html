@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostrativos y Posesivos - Lengua Castellana</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', 'Ubuntu', sans-serif;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #7dd3fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 980px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border: 6px solid #0284c7;
+            overflow: hidden;
+            position: relative;
+            min-height: 680px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* PANTALLAS */
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 25px 30px;
+            flex-grow: 1;
+            animation: fadeIn 0.35s ease-out;
+        }
+
+        .screen.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* PANTALLA INICIAL */
+        .header-title-box {
+            border: 4px solid #0369a1;
+            background-color: #0284c7;
+            color: white;
+            padding: 18px 30px;
+            border-radius: 16px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: bold;
+            box-shadow: 0 6px 0 #0369a1;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.25);
+            width: 100%;
+        }
+
+        .tags-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+
+        .badge-tag {
+            background-color: #0284c7;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 0 #0369a1;
+        }
+
+        .badge-tag.light-blue {
+            background-color: #38bdf8;
+            color: #0369a1;
+            box-shadow: 0 4px 0 #0284c7;
+        }
+
+        /* DISTRIBUCIÓN PANTALLA INICIAL */
+        .main-layout-row {
+            display: flex;
+            width: 100%;
+            gap: 20px;
+            margin-bottom: 30px;
+            align-items: stretch;
+        }
+
+        .left-icons-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        .state-icon-card {
+            background: #f0f9ff;
+            border: 3px solid #7dd3fc;
+            border-radius: 18px;
+            padding: 12px;
+            width: 190px;
+            text-align: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 0 #bae6fd;
+            transition: transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .state-icon-card:hover {
+            transform: scale(1.04);
+        }
+
+        .state-icon-card span {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        /* VENTANA CURRICULAR */
+        .curriculum-box {
+            flex: 1.5;
+            border: 4px solid #0284c7;
+            background-color: #f0fdf4;
+            border-radius: 18px;
+            padding: 15px 18px;
+            box-shadow: 0 6px 0 #0369a1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .curriculum-title {
+            color: #0369a1;
+            font-size: 1.25rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 8px;
+            border-bottom: 2px dashed #38bdf8;
+            padding-bottom: 4px;
+        }
+
+        .curriculum-content {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: #1e3a8a;
+            overflow-y: auto;
+            max-height: 260px;
+        }
+
+        .curriculum-section-title {
+            font-weight: bold;
+            color: #0284c7;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .buttons-row {
+            display: flex;
+            gap: 25px;
+            margin-bottom: 25px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 38px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.1s;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-comenzar {
+            background-color: #0284c7;
+            box-shadow: 0 8px 0 #0369a1;
+        }
+        .btn-comenzar:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #0369a1;
+        }
+
+        .btn-explicacion {
+            background-color: #0284c7;
+            box-shadow: 0 8px 0 #0369a1;
+        }
+        .btn-explicacion:active {
+            transform: translateY(4px);
+            box-shadow: 0 4px 0 #0369a1;
+        }
+
+        .btn-nav {
+            background-color: #0284c7;
+            box-shadow: 0 6px 0 #0369a1;
+            font-size: 1.15rem;
+            padding: 10px 24px;
+        }
+        .btn-nav:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #0369a1;
+        }
+
+        /* CABECERA CON TÍTULO Y ALTAVOZ */
+        .expl-header-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+        .btn-audio {
+            background-color: #0284c7;
+            box-shadow: 0 5px 0 #0369a1;
+            font-size: 1rem;
+            padding: 8px 18px;
+            margin-bottom: 0;
+        }
+        .btn-audio:active {
+            transform: translateY(2px);
+            box-shadow: 0 3px 0 #0369a1;
+        }
+
+        /* PANTALLAS DE EXPLICACIÓN */
+        .expl-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+        }
+
+        .expl-title {
+            color: #0369a1;
+            font-size: 1.7rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .expl-image-horizontal {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            font-size: 3.5rem;
+            background: #fff;
+            border: 4px dashed #38bdf8;
+            border-radius: 20px;
+            padding: 10px 30px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            box-shadow: inset 0 4px 8px rgba(0,0,0,0.05);
+            max-width: 95%;
+        }
+
+        .expl-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            color: #1e293b;
+            width: 100%;
+            max-width: 880px;
+            margin-bottom: 15px;
+            background: #f0f9ff;
+            padding: 15px 20px;
+            border-radius: 14px;
+            border-left: 6px solid #0284c7;
+            text-align: left;
+        }
+
+        /* TABLAS DE GRAMÁTICA */
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.95rem;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 10px;
+            text-align: center;
+        }
+
+        .grammar-table th {
+            background-color: #0284c7;
+            color: white;
+            font-weight: bold;
+        }
+
+        .grammar-table th.sub-th {
+            background-color: #38bdf8;
+            color: #0f172a;
+        }
+
+        .grammar-table td.cat-td {
+            background-color: #e0f2fe;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        .navigation-row {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+        }
+
+        /* PANTALLA DE JUEGO */
+        .game-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 15px;
+            background: #f0f9ff;
+            padding: 10px 20px;
+            border-radius: 14px;
+            border: 2px solid #7dd3fc;
+        }
+
+        .progress-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        .score-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0284c7;
+        }
+
+        .question-container {
+            background: #ffffff;
+            border: 3px solid #38bdf8;
+            border-radius: 20px;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .question-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            border: 1px solid #7dd3fc;
+        }
+
+        .question-text {
+            font-size: 1.35rem;
+            color: #0f172a;
+            font-weight: bold;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .question-highlight {
+            color: #0284c7;
+            background: #f0f9ff;
+            padding: 2px 8px;
+            border-radius: 6px;
+            border: 1px dashed #0284c7;
+        }
+
+        .question-media {
+            font-size: 3.5rem;
+            margin: 5px 0;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 3px solid #7dd3fc;
+            border-radius: 16px;
+            padding: 14px 20px;
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #0369a1;
+            cursor: pointer;
+            transition: all 0.15s;
+            box-shadow: 0 4px 0 #bae6fd;
+            text-align: center;
+        }
+
+        .option-btn:hover {
+            background: #f0f9ff;
+            border-color: #0284c7;
+        }
+
+        .option-btn.correct {
+            background-color: #dcfce7 !important;
+            border-color: #16a34a !important;
+            color: #14532d !important;
+            box-shadow: 0 4px 0 #15803d !important;
+        }
+
+        .option-btn.wrong {
+            background-color: #fee2e2 !important;
+            border-color: #dc2626 !important;
+            color: #7f1d1d !important;
+            box-shadow: 0 4px 0 #b91c1c !important;
+        }
+
+        /* RESULTADOS VISUALES */
+        .result-screen {
+            text-align: center;
+            padding: 20px 25px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .result-title {
+            font-size: 2.2rem;
+            color: #0369a1;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .qualification-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 5px solid #0284c7;
+            border-radius: 24px;
+            padding: 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .score-info {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        .qual-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0369a1;
+        }
+
+        .qual-text-large {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 10px 30px;
+            border-radius: 40px;
+            border: 5px solid #0284c7;
+            background: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            margin: 10px 0;
+            animation: pulseBig 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseBig {
+            from { transform: scale(1); }
+            to { transform: scale(1.03); }
+        }
+
+        .scale-legend-card {
+            background: #ffffff;
+            border: 3px dashed #38bdf8;
+            border-radius: 18px;
+            padding: 15px 20px;
+            width: 100%;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+        }
+
+        .scale-legend-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #0369a1;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .scale-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .scale-item {
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .scale-item.sob { background: #dcfce7; color: #14532d; border: 2px solid #22c55e; }
+        .scale-item.not { background: #e0f2fe; color: #0369a1; border: 2px solid #38bdf8; }
+        .scale-item.bie { background: #fef9c3; color: #713f12; border: 2px solid #facc15; }
+        .scale-item.suf { background: #ffedd5; color: #7c2d12; border: 2px solid #fb923c; }
+        .scale-item.ins { background: #fee2e2; color: #7f1d1d; border: 2px solid #f87171; }
+
+        .report-section {
+            width: 100%;
+            text-align: left;
+            margin-bottom: 15px;
+            background: #fafafa;
+            border: 2px solid #7dd3fc;
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .report-section-title {
+            font-size: 1.2rem;
+            color: #0369a1;
+            font-weight: bold;
+            border-bottom: 2px solid #7dd3fc;
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .report-badge {
+            background-color: #0284c7;
+            color: white;
+            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 12px;
+        }
+
+        .report-item {
+            font-size: 0.95rem;
+            padding: 8px 12px;
+            margin-bottom: 6px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            line-height: 1.3;
+        }
+
+        .report-item.correct-item {
+            background-color: #dcfce7;
+            color: #14532d;
+            border-left: 4px solid #16a34a;
+        }
+
+        .report-item.wrong-item {
+            background-color: #fee2e2;
+            color: #7f1d1d;
+            border-left: 4px solid #dc2626;
+        }
+
+        .feedback-toast {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.3rem;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: popUp 0.3s ease-out;
+        }
+
+        @keyframes popUp {
+            0% { transform: translate(-50%, -20px); opacity: 0; }
+            100% { transform: translate(-50%, 0); opacity: 1; }
+        }
+
+        .confetti-particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            z-index: 999;
+            animation: fall linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .footer-credits {
+            margin-top: auto;
+            font-size: 0.95rem;
+            color: #0369a1;
+            text-align: center;
+            border-top: 2px dashed #7dd3fc;
+            padding-top: 12px;
+            width: 100%;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <div id="feedback-toast" class="feedback-toast"></div>
+
+        <!-- ================= PANTALLA INICIAL ================= -->
+        <div id="screen-inicio" class="screen active">
+            <div class="header-title-box">
+                Los Demostrativos y los Posesivos
+            </div>
+            
+            <div class="tags-container">
+                <div class="badge-tag">EDUCACIÓN PRIMARIA</div>
+                <div class="badge-tag light-blue">LENGUA CASTELLANA</div>
+            </div>
+
+            <div class="main-layout-row">
+                <div class="left-icons-column">
+                    <div class="state-icon-card">👈 <span>DEMOSTRATIVOS</span></div>
+                    <div class="state-icon-card">🏷️ <span>POSESIVOS</span></div>
+                    <div class="state-icon-card">📐 <span>FUNCIONES</span></div>
+                </div>
+
+                <div class="curriculum-box">
+                    <div class="curriculum-title">Resumen de Aprendizajes</div>
+                    <div class="curriculum-content">
+                        <span class="curriculum-section-title">👈 1. Los Demostrativos:</span>
+                        • Señalan distancia respecto al hablante (cercanía, distancia media o lejanía).<br>
+                        • Formas: este/esta/esto, ese/esa/eso, aquel/aquella/aquello (y sus plurales).<br>
+                        • Funciones: Determinante (delante), Complemento (detrás), Núcleo.<br>
+                        
+                        <span class="curriculum-section-title">🏷️ 2. Los Posesivos:</span>
+                        • Indican a quién pertenece un objeto (un poseedor o varios poseedores).<br>
+                        • Expresan la persona gramatical (1.ª, 2.ª o 3.ª persona).<br>
+                        • Formas: mi/mío, tu/tuyo, su/suyo, nuestro, vuestro...<br>
+                        
+                        <span class="curriculum-section-title">📐 3. Funciones Gramaticales:</span>
+                        • Determinantes: van delante del sustantivo (<em>esta montaña</em>, <em>su cabaña</em>).<br>
+                        • Complementos: van detrás del sustantivo (<em>el pino aquel</em>, <em>la cabaña suya</em>).<br>
+                        • Núcleos: funcionan solos como sujeto o núcleo (<em>Eso es fantástico</em>).
+                    </div>
+                </div>
+            </div>
+
+            <div class="buttons-row">
+                <button class="btn btn-comenzar" onclick="startGameplay()">🎮 COMENZAR JUEGO</button>
+                <button class="btn btn-explicacion" onclick="goToExplanation(1)">📖 EXPLICACIÓN</button>
+            </div>
+
+            <div class="footer-credits">
+                Elaborado por el maestro Carlos Garrido
+            </div>
+        </div>
+
+        <!-- ================= EXPLICACIONES ================= -->
+        
+        <!-- EXPLICACIÓN 1: Los Demostrativos -->
+        <div id="screen-exp-1" class="screen">
+            <div class="expl-container">
+                <div class="expl-header-row">
+                    <div class="expl-title">1. Los Demostrativos: Distancia y Formas</div>
+                    <button class="btn btn-audio" onclick="speakText('exp-t-1')">🔊 Escuchar</button>
+                </div>
+                <div class="expl-image-horizontal">
+                    <span>🌳</span>
+                    <span>👈</span>
+                    <span>⛰️</span>
+                </div>
+                <div id="exp-t-1" class="expl-text">
+                    • Los <strong>demostrativos</strong> son palabras que señalan a los seres u objetos y expresan la <strong>distancia</strong> a la que se encuentran del hablante.<br><br>
+                    <table class="grammar-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2">DISTANCIA</th>
+                                <th colspan="3" class="sub-th">SINGULAR</th>
+                                <th colspan="2" class="sub-th">PLURAL</th>
+                            </tr>
+                            <tr>
+                                <th class="sub-th">Masculino</th>
+                                <th class="sub-th">Femenino</th>
+                                <th class="sub-th">Neutro</th>
+                                <th class="sub-th">Masculino</th>
+                                <th class="sub-th">Femenino</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cat-td">CERCANÍA</td>
+                                <td>este</td>
+                                <td>esta</td>
+                                <td>esto</td>
+                                <td>estos</td>
+                                <td>estas</td>
+                            </tr>
+                            <tr>
+                                <td class="cat-td">DISTANCIA MEDIA</td>
+                                <td>ese</td>
+                                <td>esa</td>
+                                <td>eso</td>
+                                <td>esos</td>
+                                <td>esas</td>
+                            </tr>
+                            <tr>
+                                <td class="cat-td">LEJANÍA</td>
+                                <td>aquel</td>
+                                <td>aquella</td>
+                                <td>aquello</td>
+                                <td>aquellos</td>
+                                <td>aquellas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="navigation-row">
+                    <button class="btn btn-nav" onclick="goToScreen('screen-inicio')">🏠 Inicio</button>
+                    <button class="btn btn-nav" onclick="goToExplanation(2)">Siguiente ➡️</button>
+                </div>
+            </div>
+            <div class="footer-credits">Elaborado por el maestro Carlos Garrido</div>
+        </div>
+
+        <!-- EXPLICACIÓN 2: Funciones de los Demostrativos -->
+        <div id="screen-exp-2" class="screen">
+            <div class="expl-container">
+                <div class="expl-header-row">
+                    <div class="expl-title">2. Funciones de los Demostrativos</div>
+                    <button class="btn btn-audio" onclick="speakText('exp-t-2')">🔊 Escuchar</button>
+                </div>
+                <div class="expl-image-horizontal">
+                    <span>📖</span>
+                    <span>🔍</span>
+                    <span>⚙️</span>
+                </div>
+                <div id="exp-t-2" class="expl-text">
+                    Los demostrativos pueden desempeñar distintas funciones dentro del sintagma nominal:<br><br>
+                    • <strong>Determinantes:</strong> Van <u>delante</u> del sustantivo.<br>
+                    &nbsp;&nbsp;<em>Ejemplo:</em> <strong>esta</strong> montaña, <strong>aquellos</strong> conejos.<br><br>
+                    • <strong>Complementos:</strong> Van <u>detrás</u> del sustantivo.<br>
+                    &nbsp;&nbsp;<em>Ejemplo:</em> el pino <strong>aquel</strong>, los chicos <strong>aquellos</strong>, el jersey <strong>este</strong>.<br><br>
+                    • <strong>Núcleos:</strong> Funcionan como núcleo del sintagma o pronombre (sin sustantivo acompañante).<br>
+                    &nbsp;&nbsp;<em>Ejemplo:</em> <strong>Eso</strong> es fantástico. <strong>Aquello</strong> no tenía solución.
+                </div>
+                <div class="navigation-row">
+                    <button class="btn btn-nav" onclick="goToExplanation(1)">⬅️ Atrás</button>
+                    <button class="btn btn-nav" onclick="goToExplanation(3)">Siguiente ➡️</button>
+                </div>
+            </div>
+            <div class="footer-credits">Elaborado por el maestro Carlos Garrido</div>
+        </div>
+
+        <!-- EXPLICACIÓN 3: Los Posesivos -->
+        <div id="screen-exp-3" class="screen">
+            <div class="expl-container">
+                <div class="expl-header-row">
+                    <div class="expl-title">3. Los Posesivos: Poseedores y Personas</div>
+                    <button class="btn btn-audio" onclick="speakText('exp-t-3')">🔊 Escuchar</button>
+                </div>
+                <div class="expl-image-horizontal">
+                    <span>🏠</span>
+                    <span>🎒</span>
+                    <span>🤝</span>
+                </div>
+                <div id="exp-t-3" class="expl-text">
+                    • Los <strong>posesivos</strong> expresan que un ser u objeto pertenece a alguien (poseedor). Indican la persona (1.ª, 2.ª, 3.ª) y si es un solo poseedor o varios.<br><br>
+                    <table class="grammar-table">
+                        <thead>
+                            <tr>
+                                <th rowspan="2" colspan="2">POSEEDORES</th>
+                                <th colspan="2" class="sub-th">SINGULAR</th>
+                                <th colspan="2" class="sub-th">PLURAL</th>
+                            </tr>
+                            <tr>
+                                <th class="sub-th">Masculino</th>
+                                <th class="sub-th">Femenino</th>
+                                <th class="sub-th">Masculino</th>
+                                <th class="sub-th">Femenino</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="cat-td" rowspan="3">UN POSEEDOR</td>
+                                <td style="font-weight:bold;">1.ª pers.</td>
+                                <td>mío, mi</td>
+                                <td>mía, mi</td>
+                                <td>míos, mis</td>
+                                <td>mías, mis</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">2.ª pers.</td>
+                                <td>tuyo, tu</td>
+                                <td>tuya, tu</td>
+                                <td>tuyos, tus</td>
+                                <td>tuyas, tus</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">3.ª pers.</td>
+                                <td>suyo, su</td>
+                                <td>suya, su</td>
+                                <td>suyos, sus</td>
+                                <td>suyas, sus</td>
+                            </tr>
+                            <tr>
+                                <td class="cat-td" rowspan="3">VARIOS POSEEDORES</td>
+                                <td style="font-weight:bold;">1.ª pers.</td>
+                                <td>nuestro</td>
+                                <td>nuestra</td>
+                                <td>nuestros</td>
+                                <td>nuestras</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">2.ª pers.</td>
+                                <td>vuestro</td>
+                                <td>vuestra</td>
+                                <td>vuestros</td>
+                                <td>vuestras</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:bold;">3.ª pers.</td>
+                                <td>suyo, su</td>
+                                <td>suya, su</td>
+                                <td>suyos, sus</td>
+                                <td>suyas, sus</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="navigation-row">
+                    <button class="btn btn-nav" onclick="goToExplanation(2)">⬅️ Atrás</button>
+                    <button class="btn btn-nav" onclick="goToExplanation(4)">Siguiente ➡️</button>
+                </div>
+            </div>
+            <div class="footer-credits">Elaborado por el maestro Carlos Garrido</div>
+        </div>
+
+        <!-- EXPLICACIÓN 4: Funciones de los Posesivos -->
+        <div id="screen-exp-4" class="screen">
+            <div class="expl-container">
+                <div class="expl-header-row">
+                    <div class="expl-title">4. Funciones de los Posesivos</div>
+                    <button class="btn btn-audio" onclick="speakText('exp-t-4')">🔊 Escuchar</button>
+                </div>
+                <div class="expl-image-horizontal">
+                    <span>🏡</span>
+                    <span>🔑</span>
+                    <span>📷</span>
+                </div>
+                <div id="exp-t-4" class="expl-text">
+                    Los posesivos desempeñan diferentes funciones en el sintagma nominal:<br><br>
+                    • <strong>Determinantes:</strong> Cuando van <u>delante</u> del sustantivo.<br>
+                    &nbsp;&nbsp;<em>Ejemplos:</em> <strong>su</strong> cabaña, <strong>vuestra</strong> caminata matinal, <strong>mis</strong> botas, <strong>tu</strong> mochila.<br><br>
+                    • <strong>Complementos:</strong> Cuando van <u>detrás</u> del sustantivo.<br>
+                    &nbsp;&nbsp;<em>Ejemplos:</em> la cabaña <strong>suya</strong>, una idea <strong>nuestra</strong>, un compañero <strong>suyo</strong>.<br><br>
+                    • <strong>Combinación:</strong> Podemos usar demostrativos y posesivos juntos. Por ejemplo: <em>Esta cámara tuya</em> (Demostrativo determinante + Posesivo complemento).
+                </div>
+                <div class="navigation-row">
+                    <button class="btn btn-nav" onclick="goToExplanation(3)">⬅️ Atrás</button>
+                    <button class="btn btn-comenzar" style="font-size:1.2rem; padding:10px 25px;" onclick="startGameplay()">🎮 ¡JUGAR!</button>
+                </div>
+            </div>
+            <div class="footer-credits">Elaborado por el maestro Carlos Garrido</div>
+        </div>
+
+        <!-- ================= PANTALLA DE JUEGO ================= -->
+        <div id="screen-juego" class="screen">
+            <div class="game-header">
+                <div class="progress-text">Actividad: <span id="current-q-num">1</span> / 40</div>
+                <div class="score-text">Puntos: <span id="current-score">0</span> ⭐</div>
+            </div>
+
+            <div class="question-container">
+                <div id="q-badge" class="question-badge">Categoría</div>
+                <div id="q-text" class="question-text">Cargando pregunta...</div>
+                <div id="q-media" class="question-media">❓</div>
+            </div>
+
+            <div id="options-box" class="options-grid"></div>
+
+            <div class="footer-credits" style="margin-top: 20px;">
+                Elaborado por el maestro Carlos Garrido
+            </div>
+        </div>
+
+        <!-- ================= RESULTADOS VISUALES ================= -->
+        <div id="screen-resultados" class="screen result-screen">
+            <div class="result-title">🎉 ¡Informe de Calificación! 🎉</div>
+            
+            <div class="qualification-card">
+                <div class="score-info">Aciertos conseguidos: <strong id="res-aciertos-num">0</strong> de <span id="res-total-num">40</span></div>
+                <div class="qual-score">Nota final: <span id="res-nota-num">0</span> / 10</div>
+                
+                <div id="res-calificacion-text" class="qual-text-large">INSUFICIENTE</div>
+            </div>
+
+            <div class="scale-legend-card">
+                <div class="scale-legend-title">📋 Escala Oficial de Calificaciones:</div>
+                <div class="scale-grid">
+                    <div class="scale-item sob">🌟 9 y 10: SOBRESALIENTE</div>
+                    <div class="scale-item not">👍 7 y 8: NOTABLE</div>
+                    <div class="scale-item bie">🙂 6: BIEN</div>
+                    <div class="scale-item suf">😐 5: SUFICIENTE</div>
+                    <div class="scale-item ins">💡 4 o menos: INSUFICIENTE</div>
+                </div>
+            </div>
+
+            <div id="detailed-report-container" style="width: 100%;"></div>
+
+            <button class="btn btn-comenzar" style="margin-top: 15px; margin-bottom: 20px;" onclick="goToScreen('screen-inicio')">🔄 Jugar de Nuevo</button>
+            <div class="footer-credits">Elaborado por el maestro Carlos Garrido</div>
+        </div>
+
+    </div>
+
+    <script>
+        const secciones = [
+            "1. Demostrativos: Distancia",
+            "2. Demostrativos: Funciones",
+            "3. Posesivos: Poseedores y Personas",
+            "4. Posesivos: Funciones y Combinaciones"
+        ];
+
+        // 40 ACTIVIDADES INDIVIDUALES Y PRECISAS
+        const bancoPreguntas = [
+            // BLOQUE 1: Demostrativos - Distancia (10 preguntas)
+            { sec: 0, badge: "Demostrativos - Distancia", q: "En la frase 'El carné está entre ESOS papeles', ¿qué distancia expresa ESOS?", m: "📄", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 1 },
+            { sec: 0, badge: "Demostrativos - Distancia", q: "En la oración 'ESTE viernes estrenan la película', ¿qué distancia indica ESTE?", m: "🎬", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 0 },
+            { sec: 0, badge: "Demostrativos - Distancia", q: "En 'Coloca ese libro en AQUELLA estantería', ¿qué distancia expresa AQUELLA?", m: "📚", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 2 },
+            { sec: 0, badge: "Demostrativos - Distancia", q: "En 'AQUELLOS conejos correteaban por el campo', ¿qué distancia indica AQUELLOS?", m: "🐇", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 2 },
+            { sec: 0, badge: "Demostrativos - Distancia", q: "El demostrativo 'ESTA' (como en 'esta montaña') expresa una distancia de...", m: "🏔️", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 0 },
+            { sec: 0, badge: "Demostrativos - Distancia", q: "El demostrativo 'ESE' (como en 'ese árbol') indica...", m: "🌳", o: ["Cercanía", "Distancia Media", "Lejanía"], a: 1 },
+            { sec: 0, badge: "Demostrativos - Formas", q: "¿Cuál de estos demostrativos es NEUTRO?", m: "❓", o: ["Este", "Eso", "Esa"], a: 1 },
+            { sec: 0, badge: "Demostrativos - Formas", q: "¿Cuál de las siguientes palabras es un demostrativo de LEJANÍA en plural femenino?", m: "🔍", o: ["Aquellas", "Estas", "Esas"], a: 0 },
+            { sec: 0, badge: "Demostrativos - Formas", q: "¿Qué demostrativo completa correctamente: '___ árbol de aquí es muy alto'?", m: "🌲", o: ["Aquel", "Ese", "Este"], a: 2 },
+            { sec: 0, badge: "Demostrativos - Formas", q: "¿Qué demostrativo completa correctamente: '___ pino de allí lejos se está secando'?", m: "🪵", o: ["Aquel", "Este", "Ese"], a: 0 },
+
+            // BLOQUE 2: Demostrativos - Funciones (10 preguntas)
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'AQUEL avión ha despegado con retraso', ¿qué función realiza AQUEL?", m: "✈️", o: ["Determinante (va delante)", "Complemento (va detrás)", "Núcleo"], a: 0 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'Los chicos AQUELLOS son mis amigos', ¿qué función cumple AQUELLOS?", m: "👦", o: ["Determinante", "Complemento (va detrás)", "Núcleo"], a: 1 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En '¿Es de tu hermana el jersey ESTE?', ¿qué función realiza ESTE?", m: "🧶", o: ["Determinante", "Complemento (va detrás)", "Núcleo"], a: 1 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'ESTA mañana me he despertado temprano', ¿qué función cumple ESTA?", m: "⏰", o: ["Determinante (va delante)", "Complemento", "Núcleo"], a: 0 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'Sembré ESE árbol frutal en el jardín', ¿qué función desempeña ESE?", m: "🌱", o: ["Determinante (va delante)", "Complemento", "Núcleo"], a: 0 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'AQUELLO no tenía solución', ¿qué función realiza AQUELLO?", m: "💡", o: ["Determinante", "Complemento", "Núcleo (funciona solo)"], a: 2 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "En 'ESO es fantástico', ¿qué función cumple ESO?", m: "✨", o: ["Determinante", "Complemento", "Núcleo (funciona solo)"], a: 2 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "Cuando un demostrativo va DELANTE del sustantivo, actúa como...", m: "📝", o: ["Determinante", "Complemento", "Núcleo"], a: 0 },
+            { sec: 1, badge: "Demostrativos - Funciones", q: "Cuando un demostrativo va DETRÁS del sustantivo, actúa como...", m: "🔎", o: ["Determinante", "Complemento", "Núcleo"], a: 1 },
+            { sec: 1, badge: "Demostrativos - Sintagmas", q: "¿En cuál de los siguientes sintagmas el demostrativo funciona como COMPLEMENTO?", m: "📌", o: ["Esta montaña", "El pino aquel", "Aquel avión"], a: 1 },
+
+            // BLOQUE 3: Posesivos - Poseedores y Personas (10 preguntas)
+            { sec: 2, badge: "Posesivos - Análisis", q: "En 'MIS botas', ¿cuántos poseedores indica MIS y en qué persona está?", m: "🥾", o: ["Un poseedor, 1.ª persona", "Varios poseedores, 1.ª persona", "Un poseedor, 2.ª persona"], a: 0 },
+            { sec: 2, badge: "Posesivos - Análisis", q: "En 'TU vecindario', ¿cuántos poseedores indica TU?", m: "🏡", o: ["Un poseedor (2.ª persona)", "Varios poseedores (2.ª persona)", "Un poseedor (3.ª persona)"], a: 0 },
+            { sec: 2, badge: "Posesivos - Análisis", q: "En 'SU abuela', ¿cuántos poseedores e indicativo de persona expresa SU?", m: "👵", o: ["Un poseedor, 1.ª persona", "Un poseedor o varios, 3.ª persona", "Varios poseedores, 1.ª persona"], a: 1 },
+            { sec: 2, badge: "Posesivos - Análisis", q: "En 'TU mochila', ¿a qué persona gramatical corresponde TU?", m: "🎒", o: ["1.ª persona", "2.ª persona", "3.ª persona"], a: 1 },
+            { sec: 2, badge: "Posesivos - Análisis", q: "En 'VUESTRA parcela', ¿cuántos poseedores expresa VUESTRA?", m: "🏞️", o: ["Un poseedor", "Varios poseedores (2.ª persona)", "Tres poseedores"], a: 1 },
+            { sec: 2, badge: "Posesivos - Análisis", q: "El posesivo 'NUESTRO' indica...", m: "🤝", o: ["Un poseedor, 1.ª persona", "Varios poseedores, 1.ª persona", "Varios poseedores, 2.ª persona"], a: 1 },
+            { sec: 2, badge: "Posesivos - Formas", q: "¿Cuál de estos posesivos indica VARIOS POSEEDORES en 1.ª persona plural femenino?", m: "👧", o: ["Nuestras", "Mías", "Vuestras"], a: 0 },
+            { sec: 2, badge: "Posesivos - Formas", q: "¿Cuál de estos posesivos indica UN POSEEDOR en 2.ª persona masculino plural?", m: "🎁", o: ["Tuyos", "Vuestros", "Míos"], a: 0 },
+            { sec: 2, badge: "Posesivos - Formas", q: "En 'las botas MÍAS', ¿qué tipo de posesivo es MÍAS?", m: "👢", o: ["Un poseedor, 1.ª persona, femenino plural", "Varios poseedores, 1.ª persona", "Un poseedor, 2.ª persona"], a: 0 },
+            { sec: 2, badge: "Posesivos - Formas", q: "El posesivo 'SUYA' corresponde a...", m: "🔑", o: ["1.ª persona", "2.ª persona", "3.ª persona"], a: 2 },
+
+            // BLOQUE 4: Posesivos - Funciones y Combinaciones (10 preguntas)
+            { sec: 3, badge: "Posesivos - Funciones", q: "En 'SU cabaña', ¿qué función cumple SU?", m: "🏕️", o: ["Determinante (va delante)", "Complemento (va detrás)", "Núcleo"], a: 0 },
+            { sec: 3, badge: "Posesivos - Funciones", q: "En 'La cabaña SUYA', ¿qué función desempeña SUYA?", m: "🏘️", o: ["Determinante", "Complemento (va detrás)", "Núcleo"], a: 1 },
+            { sec: 3, badge: "Posesivos - Funciones", q: "En 'VUESTRA caminata matinal', ¿qué función realiza VUESTRA?", m: "🚶‍♀️", o: ["Determinante (va delante)", "Complemento", "Núcleo"], a: 0 },
+            { sec: 3, badge: "Posesivos - Funciones", q: "En 'Una idea NUESTRA', ¿qué función cumple NUESTRA?", m: "💡", o: ["Determinante", "Complemento (va detrás)", "Núcleo"], a: 1 },
+            { sec: 3, badge: "Posesivos - Funciones", q: "En 'Un compañero SUYO', ¿qué función desempeña SUYO?", m: "🧑‍🤝‍🧑", o: ["Determinante", "Complemento (va detrás)", "Núcleo"], a: 1 },
+            { sec: 3, badge: "Combinaciones", q: "En 'ESTA cámara TUYA', ¿qué palabra es el demostrativo y cuál el posesivo?", m: "📷", o: ["Esta = Demostrativo, Tuya = Posesivo", "Esta = Posesivo, Tuya = Demostrativo", "Ambas son demostrativos"], a: 0 },
+            { sec: 3, badge: "Combinaciones", q: "En 'AQUELLOS prismáticos TUS', ¿qué función tiene el demostrativo AQUELLOS?", m: "🔭", o: ["Determinante (delante de prismáticos)", "Complemento", "Núcleo"], a: 0 },
+            { sec: 3, badge: "Combinaciones", q: "En 'Aquel libro TUYO', el posesivo TUYO actúa como...", m: "📖", o: ["Determinante", "Complemento (va detrás de libro)", "Núcleo"], a: 1 },
+            { sec: 3, badge: "Repaso General", q: "¿Cuál de los siguientes ejemplos contiene un demostrativo DETERMINANTE y un posesivo COMPLEMENTO?", m: "🎯", o: ["Esta cámara tuya", "Su cabaña bonita", "El pino aquel"], a: 0 },
+            { sec: 3, badge: "Repaso General", q: "Si decimos 'Mi perro este', ¿qué función tiene la palabra 'este'?", m: "🐶", o: ["Determinante", "Complemento (va detrás de perro)", "Núcleo"], a: 1 }
+        ];
+
+        const audiosAcierto = [
+            "¡Excelente! Conoces perfectamente la gramática.",
+            "¡Fantástico! Sabes diferenciar demostrativos y posesivos.",
+            "¡Muy bien! Se nota que has estudiado mucho.",
+            "¡Magnífico acierto! ¡Sigue así, campeón!"
+        ];
+
+        const audiosFallo = [
+            "¡No te preocupes! Repasa la regla y lo lograrás.",
+            "¡Casi lo tienes! Piensa si va delante o detrás del sustantivo.",
+            "¡Ánimo! De los errores aprendemos mucha gramática.",
+            "¡Continúa intentándolo, tú puedes!"
+        ];
+
+        let preguntaActual = 0;
+        let aciertos = 0;
+        let respondiendo = false;
+        let registroRespuestas = [];
+
+        function goToScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+            window.speechSynthesis.cancel();
+        }
+
+        function goToExplanation(step) {
+            goToScreen('screen-exp-' + step);
+        }
+
+        function startGameplay() {
+            preguntaActual = 0;
+            aciertos = 0;
+            registroRespuestas = [];
+            goToScreen('screen-juego');
+            mostrarPregunta();
+        }
+
+        function mostrarPregunta() {
+            respondiendo = false;
+            const infoPregunta = bancoPreguntas[preguntaActual];
+            
+            document.getElementById('current-q-num').innerText = preguntaActual + 1;
+            document.getElementById('current-score').innerText = aciertos;
+            document.getElementById('q-badge').innerText = infoPregunta.badge;
+            document.getElementById('q-text').innerText = infoPregunta.q;
+            document.getElementById('q-media').innerText = infoPregunta.m;
+
+            const optionsBox = document.getElementById('options-box');
+            optionsBox.innerHTML = '';
+
+            infoPregunta.o.forEach((opcion, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.innerText = opcion;
+                btn.onclick = () => verificarRespuesta(index, btn);
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function verificarRespuesta(indiceSeleccionado, botonElemento) {
+            if (respondiendo) return;
+            respondiendo = true;
+
+            const infoPregunta = bancoPreguntas[preguntaActual];
+            const toast = document.getElementById('feedback-toast');
+            const esCorrecto = (indiceSeleccionado === infoPregunta.a);
+
+            registroRespuestas.push({
+                pregunta: infoPregunta.q,
+                seccion: infoPregunta.sec,
+                esCorrecta: esCorrecto
+            });
+
+            if (esCorrecto) {
+                aciertos++;
+                botonElemento.classList.add('correct');
+                toast.innerText = "¡Excelente acierto! 🌟👍";
+                toast.style.backgroundColor = "#16a34a";
+                
+                lanzarConfeti();
+                const fraseAcierto = audiosAcierto[Math.floor(Math.random() * audiosAcierto.length)];
+                speakTextoInmediato(fraseAcierto);
+                playSimpleTone(523.25, 0.2); 
+            } else {
+                botonElemento.classList.add('wrong');
+                const botones = document.getElementById('options-box').children;
+                botones[infoPregunta.a].classList.add('correct');
+                toast.innerText = "¡Aprende y sigue! 💡";
+                toast.style.backgroundColor = "#dc2626";
+                
+                const fraseFallo = audiosFallo[Math.floor(Math.random() * audiosFallo.length)];
+                speakTextoInmediato(fraseFallo);
+                playSimpleTone(293.66, 0.3); 
+            }
+
+            document.getElementById('current-score').innerText = aciertos;
+            toast.style.display = "block";
+
+            setTimeout(() => {
+                toast.style.display = "none";
+                preguntaActual++;
+                if (preguntaActual < bancoPreguntas.length) {
+                    mostrarPregunta();
+                } else {
+                    finalizarJuego();
+                }
+            }, 2200); 
+        }
+
+        function finalizarJuego() {
+            const totalPreguntas = bancoPreguntas.length; // 40
+            const nota = Math.round((aciertos / totalPreguntas) * 10); 
+
+            let cualitativa = "";
+            let colorCal = "";
+            let borderCal = "";
+
+            if (nota >= 9) {
+                cualitativa = "SOBRESALIENTE 🌟";
+                colorCal = "#14532d";
+                borderCal = "#22c55e";
+            } else if (nota >= 7) {
+                cualitativa = "NOTABLE 👍";
+                colorCal = "#0369a1";
+                borderCal = "#38bdf8";
+            } else if (nota === 6) {
+                cualitativa = "BIEN 🙂";
+                colorCal = "#854d0e";
+                borderCal = "#facc15";
+            } else if (nota === 5) {
+                cualitativa = "SUFICIENTE 😐";
+                colorCal = "#9a3412";
+                borderCal = "#fb923c";
+            } else {
+                cualitativa = "INSUFICIENTE 💡";
+                colorCal = "#991b1b";
+                borderCal = "#f87171";
+            }
+
+            document.getElementById('res-aciertos-num').innerText = aciertos;
+            document.getElementById('res-total-num').innerText = totalPreguntas;
+            document.getElementById('res-nota-num').innerText = nota;
+            
+            const badgeCualitativo = document.getElementById('res-calificacion-text');
+            badgeCualitativo.innerText = cualitativa;
+            badgeCualitativo.style.color = colorCal;
+            badgeCualitativo.style.borderColor = borderCal;
+
+            const reportContainer = document.getElementById('detailed-report-container');
+            reportContainer.innerHTML = '';
+
+            secciones.forEach((nombreSec, idxSec) => {
+                const preguntasSec = registroRespuestas.filter(r => r.seccion === idxSec);
+                const aciertosSec = preguntasSec.filter(r => r.esCorrecta).length;
+
+                const secCard = document.createElement('div');
+                secCard.className = 'report-section';
+
+                let itemsHTML = '';
+                preguntasSec.forEach(p => {
+                    const icon = p.esCorrecta ? '✅' : '❌';
+                    const cssClass = p.esCorrecta ? 'correct-item' : 'wrong-item';
+                    itemsHTML += `
+                        <div class="report-item ${cssClass}">
+                            <span>${icon}</span>
+                            <span>${p.pregunta}</span>
+                        </div>
+                    `;
+                });
+
+                secCard.innerHTML = `
+                    <div class="report-section-title">
+                        <span>${nombreSec}</span>
+                        <span class="report-badge">${aciertosSec} / ${preguntasSec.length} aciertos</span>
+                    </div>
+                    <div>${itemsHTML}</div>
+                `;
+
+                reportContainer.appendChild(secCard);
+            });
+
+            goToScreen('screen-resultados');
+            if(nota >= 7) {
+                lanzarConfeti();
+                setTimeout(lanzarConfeti, 500);
+            }
+        }
+
+        function speakText(elementId) {
+            window.speechSynthesis.cancel();
+            const text = document.getElementById(elementId).innerText;
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.9;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakTextoInmediato(texto) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'es-ES';
+            utterance.rate = 0.95;
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function playSimpleTone(freq, duration) {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = 'triangle';
+                oscillator.frequency.value = freq;
+                gainNode.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                console.log("Audio no disponible.");
+            }
+        }
+
+        function lanzarConfeti() {
+            const colores = ['#0284c7', '#38bdf8', '#22c55e', '#facc15', '#fb923c', '#a855f7'];
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.className = 'confetti-particle';
+                p.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = '-20px';
+                p.style.transform = `scale(${Math.random() * 0.6 + 0.6})`;
+                
+                const duracion = Math.random() * 1.5 + 1;
+                p.style.animationDuration = duracion + 's';
+                p.style.animationDelay = Math.random() * 0.2 + 's';
+                
+                document.body.appendChild(p);
+                
+                setTimeout(() => {
+                    p.remove();
+                }, (duracion + 0.2) * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
